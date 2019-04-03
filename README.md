@@ -23,4 +23,4 @@ devtools::install_github("celehs/MAP")
 
 # Reference
 
-Liao, K. P., Sun, J., Cai, T. A., Link, N., Hong, C., … Huang, J. (2019). [High-throughput Multimodal Automated Phenotyping (MAP) with Application to PheWAS](https://doi.org/10.1101/587436).
+K. P. Liao, J. Sun, T. A. Cai, ..., T. Cai (2019). [High-throughput Multimodal Automated Phenotyping (MAP) with Application to PheWAS](https://doi.org/10.1101/587436).
