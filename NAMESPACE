@@ -1,0 +1,5 @@
+export("MAP")
+import(flexmix)
+import(Matrix)
+importFrom("stats",  "uniroot", "sd", "qnorm", "cor", "kmeans",
+           "as.formula", "pnorm", "quantile")
