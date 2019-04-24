@@ -14,6 +14,7 @@ library(MAP)
 simulate data to test the algorithm
 
 ```{r}
+set.seed(123)
 n = 400
 ICD = c(rpois(n/4,10), rpois(n/4,1), rep(0,n/2) )
 NLP = c(rpois(n/4,10), rpois(n/4,1), rep(0,n/2) )

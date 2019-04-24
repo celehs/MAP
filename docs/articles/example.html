@@ -80,12 +80,13 @@
 <pre><code>## Loading required package: lattice</code></pre>
 <pre><code>## Loading required package: Matrix</code></pre>
 <p>simulate data to test the algorithm</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">n =<span class="st"> </span><span class="dv">400</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">ICD =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Poisson">rpois</a></span>(n<span class="op">/</span><span class="dv">4</span>,<span class="dv">10</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Poisson">rpois</a></span>(n<span class="op">/</span><span class="dv">4</span>,<span class="dv">1</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="dv">0</span>,n<span class="op">/</span><span class="dv">2</span>) )</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">NLP =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Poisson">rpois</a></span>(n<span class="op">/</span><span class="dv">4</span>,<span class="dv">10</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Poisson">rpois</a></span>(n<span class="op">/</span><span class="dv">4</span>,<span class="dv">1</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="dv">0</span>,n<span class="op">/</span><span class="dv">2</span>) )</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">mat =<span class="st"> </span><span class="kw">Matrix</span>(<span class="dt">data=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cbind">cbind</a></span>(ICD,NLP),<span class="dt">sparse =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">note =<span class="st"> </span><span class="kw">Matrix</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Poisson">rpois</a></span>(n,<span class="dv">10</span>)<span class="op">+</span><span class="dv">5</span>,<span class="dt">ncol=</span><span class="dv">1</span>,<span class="dt">sparse =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">res =<span class="st"> </span><span class="kw"><a href="../reference/MAP.html">MAP</a></span>(<span class="dt">mat =</span> mat,  <span class="dt">note=</span>note)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">n =<span class="st"> </span><span class="dv">400</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">ICD =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Poisson">rpois</a></span>(n<span class="op">/</span><span class="dv">4</span>,<span class="dv">10</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Poisson">rpois</a></span>(n<span class="op">/</span><span class="dv">4</span>,<span class="dv">1</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="dv">0</span>,n<span class="op">/</span><span class="dv">2</span>) )</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">NLP =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Poisson">rpois</a></span>(n<span class="op">/</span><span class="dv">4</span>,<span class="dv">10</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Poisson">rpois</a></span>(n<span class="op">/</span><span class="dv">4</span>,<span class="dv">1</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="dv">0</span>,n<span class="op">/</span><span class="dv">2</span>) )</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">mat =<span class="st"> </span><span class="kw">Matrix</span>(<span class="dt">data=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cbind">cbind</a></span>(ICD,NLP),<span class="dt">sparse =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">note =<span class="st"> </span><span class="kw">Matrix</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Poisson">rpois</a></span>(n,<span class="dv">10</span>)<span class="op">+</span><span class="dv">5</span>,<span class="dt">ncol=</span><span class="dv">1</span>,<span class="dt">sparse =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">res =<span class="st"> </span><span class="kw"><a href="../reference/MAP.html">MAP</a></span>(<span class="dt">mat =</span> mat,  <span class="dt">note=</span>note)</a></code></pre></div>
 <pre><code>## ####################### 
 ## MAP only considers pateints who have note count data and
 ##         at least one nonmissing variable!
@@ -98,14 +99,14 @@
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(res<span class="op">$</span>scores)</a></code></pre></div>
 <pre><code>## 6 x 1 sparse Matrix of class "dgCMatrix"
 ##               
-## [1,] 1.0000000
-## [2,] 0.9999601
-## [3,] 0.9986017
-## [4,] 0.9999932
-## [5,] 1.0000000
-## [6,] 0.9999997</code></pre>
+## [1,] 0.9989972
+## [2,] 0.9999445
+## [3,] 1.0000000
+## [4,] 0.9999906
+## [5,] 0.9993465
+## [6,] 0.9999966</code></pre>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">res<span class="op">$</span>cut.MAP</a></code></pre></div>
-<pre><code>## [1] 0.330468</code></pre>
+<pre><code>## [1] 0.1252243</code></pre>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
