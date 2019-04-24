@@ -16,6 +16,7 @@ Description: Electronic health records (EHR) linked with biorepositories are
     utilization. The MAP algorithm yields a predicted probability of phenotype 
     for each patient and a threshold for classifying subjects with phenotype 
     yes/no (See Katherine P. Liao, et al. (2019) <doi:10.1101/587436>.).
+URL: https://github.com/celehs/MAP
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
@@ -23,6 +24,3 @@ Depends: R (>= 3.4.0), flexmix (>= 2.3-14), Matrix(>= 1.2-10)
 Suggests: knitr, rmarkdown
 NeedsCompilation: no
 RoxygenNote: 6.1.1
-Packaged: 2019-03-29 19:47:25 UTC; JiehuanSun
-Repository: CRAN
-Date/Publication: 2019-04-01 08:20:09 UTC
