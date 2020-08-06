@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • MAP</title>
+<title>MAP dictionary — phecode.cuis.list • MAP</title>
 
 
 <!-- jquery -->
@@ -35,7 +35,9 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="MAP dictionary — phecode.cuis.list" />
+<meta property="og:description" content="MAP dictionary that maps phecode to CUIs" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -54,7 +56,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
@@ -101,48 +103,90 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>MAP dictionary</h1>
+    <small class="dont-index">Source: <a href='https://github.com/celehs/MAP/blob/master/R/MAP.R'><code>R/MAP.R</code></a></small>
+    <div class="hidden name"><code>phecode.cuis.list.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>MAP dictionary that maps phecode to CUIs</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='no'>phecode.cuis.list</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="MAP.html">MAP()</a></code> </p>
-        </td>
-        <td><p>MAP algorithm</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="phecode.cuis.list.html">phecode.cuis.list</a></code> </p>
-        </td>
-        <td><p>MAP dictionary</p></td>
-      </tr>
-    </tbody>
-    </table>
+
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>A list of 1866</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>phecode.cuis.list</span>)</div><div class='output co'>#&gt; $`008_`
+#&gt;  [1] "C0008354" "C0343372" "C0275976" "C0343375" "C0343376" "C0343377"
+#&gt;  [7] "C0030528" "C0016479" "C0002438" "C1363999" "C0152501" "C0023886"
+#&gt; [13] "C0152502" "C0152503" "C1318565" "C0152505" "C0152506" "C1299919"
+#&gt; [19] "C0411268" "C0343398" "C0276774" "C0152518" "C0152519" "C1279224"
+#&gt; [25] "C0595979" "C0013369" "C0152522" "C0152942" "C0152945" "C0041466"
+#&gt; [31] "C0152485" "C0036114" "C0152487" "C0152492" "C0029826" "C0036117"
+#&gt; [37] "C0013371" "C0302358" "C0302359" "C0302360" "C0302361" "C0152493"
+#&gt; [43] "C0152498" "C0038159" "C1739094" "C0275590" "C0152496" "C0152497"
+#&gt; [49] "C0374921" "C0152511" "C0276058" "C0152513" "C0489951" "C0038157"
+#&gt; [55] "C0152515" "C0275982" "C0238528" "C0374931" "C0374932" "C0152516"
+#&gt; [61] "C0341558" "C0343380" "C0343379" "C0343382" "C0343381" "C0494024"
+#&gt; [67] "C0494025" "C0152517" "C0347854" "C0276162" "C0374933" "C0374934"
+#&gt; [73] "C1611187" "C0374936" "C0374937" "C0348098" "C0489952" "C0152500"
+#&gt; [79] "C0004692" "C0017536" "C0010418" "C0152507" "C0009187" "C0042708"
+#&gt; [85] "C0178238"
+#&gt; 
+#&gt; $`008_5`
+#&gt;  [1] "C0041466" "C0152485" "C0036114" "C0152487" "C0152492" "C0029826"
+#&gt;  [7] "C0036117" "C0013371" "C0302358" "C0302359" "C0302360" "C0302361"
+#&gt; [13] "C0152493" "C0152498" "C0038159" "C1739094" "C0275590" "C0152496"
+#&gt; [19] "C0152497" "C0374921" "C0152511" "C0276058" "C0152513" "C0489951"
+#&gt; [25] "C0038157" "C0152515" "C0275982" "C0238528" "C0374931" "C0374932"
+#&gt; [31] "C0152516" "C0341558" "C0343380" "C0343379" "C0343382" "C0343381"
+#&gt; [37] "C0494024" "C0494025"
+#&gt; 
+#&gt; $`008_51`
+#&gt; [1] "C0341558" "C0343380" "C0343379" "C0343382" "C0343381" "C0494024"
+#&gt; 
+#&gt; $`008_52`
+#&gt; [1] "C0494025"
+#&gt; 
+#&gt; $`008_6`
+#&gt;  [1] "C0152517" "C0347854" "C0276162" "C0374933" "C0374934" "C1611187"
+#&gt;  [7] "C0374936" "C0374937" "C0348098" "C0489952" "C0042708"
+#&gt; 
+#&gt; $`008_7`
+#&gt; [1] "C0152500" "C0004692" "C0017536" "C0010418" "C0152507"
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>tail</a></span>(<span class='no'>phecode.cuis.list</span>)</div><div class='output co'>#&gt; $`990_`
+#&gt;  [1] "C0156153" "C0156270" "C0157088" "C0157089" "C0157090" "C0157091"
+#&gt;  [7] "C0160814" "C0034525" "C0481248" "C0260497"
+#&gt; 
+#&gt; $`994_`
+#&gt; [1] "C0242966" "C1719676" "C1719677" "C0243026" "C1719672" "C0036983" "C0036690"
+#&gt; 
+#&gt; $`994_1`
+#&gt; [1] "C0242966" "C1719676" "C1719677"
+#&gt; 
+#&gt; $`994_2`
+#&gt; [1] "C0243026" "C1719672" "C0036983" "C0036690"
+#&gt; 
+#&gt; $`994_21`
+#&gt; [1] "C0036983"
+#&gt; 
+#&gt; $`996_`
+#&gt; [1] "C0274344" "C0161771" "C0161805" "C0496137"
+#&gt; </div></pre>
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#format">Format</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
+
   </div>
 </div>
 

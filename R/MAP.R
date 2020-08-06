@@ -203,3 +203,10 @@ MAP = function(mat=NULL, note=NULL,  yes.con = FALSE, full.output = FALSE){
 }
 
 
+#' @title MAP dictionary
+#' @description MAP dictionary that maps phecode to CUIs
+#' @format A list of 1866
+#' @examples
+#' head(phecode.cuis.list)
+#' tail(phecode.cuis.list)
+"phecode.cuis.list"
