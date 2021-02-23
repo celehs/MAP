@@ -33,7 +33,7 @@ Install development version from GitHub:
 remotes::install_github("celehs/MAP")
 ```
 
-## Reference
+## Citation
 
 Liao, K. P., Sun, J., Cai, T. A., Link, N., Hong, C., Huang, J.,
 Huffman, J. E., Gronsbell, J., Zhang, Y., Ho, Y. L., Castro, V., Gainer,

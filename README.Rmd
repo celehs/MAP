@@ -25,7 +25,7 @@ Install development version from GitHub:
 remotes::install_github("celehs/MAP")
 ```
 
-## Reference
+## Citation
 
 Liao, K. P., Sun, J., Cai, T. A., Link, N., Hong, C., Huang, J., Huffman, J. E., Gronsbell, J., Zhang, Y., Ho, Y. L., Castro, V., Gainer, V., Murphy, S. N., O'Donnell, C. J., Gaziano, J. M., Cho, K., Szolovits, P., Kohane, I. S., Yu, S., & Cai, T. (2019). High-throughput multimodal automated phenotyping (MAP) with application to PheWAS. Journal of the American Medical Informatics Association : JAMIA, 26(11), 1255–1262. https://doi.org/10.1093/jamia/ocz066
 
