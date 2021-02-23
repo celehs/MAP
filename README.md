@@ -1,5 +1,9 @@
-MAP: Multimodal Automated Phenotyping
-================
+
+# MAP: Multimodal Automated Phenotyping
+
+[![CRAN](https://www.r-pkg.org/badges/version/MAP)](https://CRAN.R-project.org/package=MAP)
+
+## Overview
 
 Electronic health records (EHR) linked with biorepositories are a
 powerful platform for translational studies. A major bottleneck exists
@@ -12,19 +16,15 @@ algorithm), fits an ensemble of latent mixture models on aggregated ICD
 and NLP counts along with healthcare utilization. The MAP algorithm
 yields a predicted probability of phenotype for each patient and a
 threshold for classifying subjects with phenotype yes/no (See Katherine
-P. Liao, et al. (2019) <doi:10.1101/587436>.).
+P. Liao, et al. (2019) <doi:10.1093/jamia/ocz066>.).
 
 ## Installation
-
-### Stable Version
 
 Install stable version from CRAN:
 
 ``` r
 install.packages("MAP")
 ```
-
-### Development Version
 
 Install development version from GitHub:
 
