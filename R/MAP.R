@@ -189,8 +189,8 @@ MAP = function(mat = NULL, note = NULL, yes.con = FALSE, full.output = FALSE,
 
     IDtab = IDtab[IDtab$Freq>0,]
     cat("####################### \n")
-    cat("MAP only considers pateints who have note count data and
-        at least one nonmissing variable!\n")
+    cat("MAP only considers patients who have note count data and
+        at least one non-missing variable\n")
     cat("####\nHere is a summary of the input data:\n")
     cat("Total number of patients:", sum(IDtab$Freq), "\n")
     print(IDtab)
