@@ -1,9 +1,10 @@
 Package: MAP
 Type: Package
 Title: Multimodal Automated Phenotyping
-Version: 0.1.4
+Version: 0.1.5
 Authors@R: c(
     person("Jiehuan", "Sun", role = c("aut", "cre"), email = "jiehuan.sun@gmail.com"),
+    person("Thomas", "Charlon", role = "ctb", comment = c(ORCID = "0000-0001-7497-0470")),
     person("Katherine", "Liao", role = "aut"),
     person("Sheng", "Yu", role = "aut"),
     person("Tianxi", "Cai", role = "aut")
@@ -26,7 +27,7 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Depends: R (>= 3.4.0), flexmix (>= 2.3-14), Matrix(>= 1.2-10)
-Suggests: knitr, rmarkdown
+Suggests: knitr, pROC, rmarkdown
 VignetteBuilder: knitr
 NeedsCompilation: no
 RoxygenNote: 7.1.1

@@ -1,0 +1,39 @@
+version: '2'
+
+services:
+  manual:
+    build: ./
+    volumes:
+      - ./:/map/
+    working_dir: /map
+    command: make doc.pdf
+  vignette:
+    build: ./
+    volumes:
+      - ./:/map/
+    working_dir: /map
+    command: make vignette
+  build_doc:
+    build: ./
+    volumes:
+      - ./:/map/
+    working_dir: /map/
+    command: make roxygenise
+  pkg_test:
+    build: ./
+    volumes:
+      - ./:/map/
+    working_dir: /map/
+    command: make devtools_test
+  pkg_check:
+    build: ./
+    volumes:
+      - ./:/map/
+    working_dir: /map/
+    command: make devtools_check
+  pkg_submit:
+    build: ./
+    volumes:
+      - ./:/map/
+    working_dir: /map/
+    command: make submit

@@ -58,11 +58,12 @@ IDtab = function(mat=NULL,note=NULL){
 #' res = MAP(mat = mat,  note=note)
 #' head(res$scores)
 #' res$cut.MAP
-MAP = function(mat=NULL, note=NULL,  yes.con = FALSE, full.output = FALSE){
+MAP = function(mat = NULL, note = NULL, yes.con = FALSE, full.output = FALSE,
+               subset_sample = FALSE, subset_sample_size = 5000){
 
     vname = colnames(mat)
     if(length(grep("ICD",vname,fixed=TRUE))==0){
-        stop("Please provide ICD data in mat with colname being ICD!")
+        stop("Please provide ICD data in mat with colname being ICD")
     }
     ICD = mat[,grep("ICD",vname,fixed=TRUE)]
 
@@ -94,23 +95,25 @@ MAP = function(mat=NULL, note=NULL,  yes.con = FALSE, full.output = FALSE){
         }
         totalN00 = nrow(dat.tmp)
 
-        set.seed(1)
-        n.clust = 1
-        iter = 0
-        while(n.clust < 2 & iter < 5){
-            tmpfit = flexmix(tmpfm, k = 2,
-                             model = FLXMRglmfix(fixed =~note,varFix=FALSE, family=family[i]),
-                             concomitant=tmpfm2,control=list(tol = 1e-8), data=dat.tmp)
-            n.clust = length(unique(tmpfit@cluster))
-            iter = iter+1
+        if (!subset_sample && nrow(dat.tmp) <= subset_sample_size) {
+
+          fit_obj = fit_flexmix(tmpfm, note, family[i], tmpfm2, dat.tmp)
+          post_obj = fit_to_posterior_obj(dat.tmp, fit_obj)
+
+        } else {
+
+          post_obj = fitproj_flexmix(tmpfm, note, family[i], tmpfm2, dat.tmp,
+                                    subset_sample_size)
         }
 
+        n.clust = length(unique(post_obj$cluster))
+
         ##if(name.all[i]=="nlp_log"){browser()}
-        if(n.clust>1){
-            avgcount = dat.tmp[,name.all[i]]
-            tmpdiff = mean(avgcount[tmpfit@cluster==2]) - mean(avgcount[tmpfit@cluster==1])
+        if (n.clust > 1){
+            avgcount = post_obj$m_data[,name.all[i]]
+            tmpdiff = mean(avgcount[post_obj$cluster==2]) - mean(avgcount[post_obj$cluster==1])
             tmpind =  as.numeric( (tmpdiff > 0) + 1 )
-            qprobtmp = qnorm(posterior(tmpfit))
+            qprobtmp = qnorm(post_obj$m_post)
             qprob = qprobtmp[,tmpind]
             qprob[is.infinite(qprob)] = -1*qprobtmp[is.infinite(qprob),3-tmpind]
             ### deal with some extreme clustering results ###
@@ -130,7 +133,7 @@ MAP = function(mat=NULL, note=NULL,  yes.con = FALSE, full.output = FALSE){
                 qprob[qprob == -Inf] = qnorm(1/totalN00)
             }
         }else{
-            qprob = rep( qnorm(1-1/totalN00), nrow(dat.tmp))
+            qprob = rep( qnorm(1-1/totalN00), nrow(post_obj$m_data))
             warning(paste("The clustering step does not converge for variable ",
                           name.all[i], "!", sep="") )
         }
@@ -186,8 +189,8 @@ MAP = function(mat=NULL, note=NULL,  yes.con = FALSE, full.output = FALSE){
 
     IDtab = IDtab[IDtab$Freq>0,]
     cat("####################### \n")
-    cat("MAP only considers pateints who have note count data and
-        at least one nonmissing variable!\n")
+    cat("MAP only considers patients who have note count data and
+        at least one non-missing variable\n")
     cat("####\nHere is a summary of the input data:\n")
     cat("Total number of patients:", sum(IDtab$Freq), "\n")
     print(IDtab)
