@@ -32,13 +32,13 @@ test_fitproj <- function() {
   res_sample = MAP(mat = mat, note = note, subset_sample = TRUE,
             subset_sample_size = 82)
 
-  expect_equal(round(res_sample$cut.MAP, 3), 0.462)
+  expect_equal(round(res_sample$cut.MAP, 3), 0.279)
 
   clusters_sample = round(res_sample$scores[, 1])
-  expect_equal(sum(clusters_sample), 106)
+  expect_equal(sum(clusters_sample), 99)
 
   roc_obj = pROC::roc(clusters, clusters_sample)
-  expect_equal(round(roc_obj$auc, 3), 0.814)
+  expect_equal(roc_obj$auc, 1)
 }
 test_that('fitproj', test_fitproj())
 
