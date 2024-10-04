@@ -1,3 +1,4 @@
+# Fit MAP on sample_size patients, project remaining
 fitproj_flexmix = function(tmpfm, note, family, tmpfm2, dat.tmp, sample_size) {
 
   m_data = dat.tmp
@@ -14,21 +15,10 @@ fitproj_flexmix = function(tmpfm, note, family, tmpfm2, dat.tmp, sample_size) {
 
   fit_obj = fit_flexmix(tmpfm, m_fit_note, family, tmpfm2, m_fit)
 
-  # we need the cluster field and the return of the posterior fun
-
-  # do we need to add m_project_note ?
- # proj_obj = flexmix::predict(fit_obj$tmpfit, m_project, aggregate = TRUE)
-
-# proj_obj = flexmix::predict(fit_obj$tmpfit, m_project,
-#                             fixed = ~m_project_note, varFix = FALSE,
-#                             family = family)
-
   m_post = flexmix::posterior(fit_obj$tmpfit, m_project)
 
-  # this seems to work
   clusters = abs(round(m_post[, 1]) - 2)
 
-  # now combine with full
   m_data = rbind(m_fit, m_project)
   reorder_idxs = order(as.numeric(rownames(m_data)))
   m_data = m_data[reorder_idxs, ]
@@ -40,9 +30,6 @@ fitproj_flexmix = function(tmpfm, note, family, tmpfm2, dat.tmp, sample_size) {
 
 
 fit_flexmix = function(tmpfm, note, family, tmpfm2, dat.tmp) {
-
-  # TODO remove seed (CRAN guidelines)
-  set.seed(1)
 
   n.clust = 1
   iter = 0

@@ -11,15 +11,15 @@ mat = Matrix(data = cbind(ICD, NLP), sparse = TRUE)
 note = Matrix(rpois(n, 10) + 5, ncol = 1, sparse = TRUE)
 
 res_full = MAP(mat = mat, note = note)
-clusters = round(res_full$scores[, 1])
+clusters = res_full$scores[, 1] > res_full$cut.MAP
 
 test_MAP <- function() {
 
   expect_equal(dim(head(res_full$scores)), c(6, 1))
 
-  expect_equal(round(res_full$cut.MAP, 3), 0.282)
+  expect_equal(round(res_full$cut.MAP, 3), 0.125)
 
-  expect_equal(sum(clusters), 99)
+  expect_equal(sum(clusters), 102)
 
 }
 test_that('MAP', test_MAP())
@@ -27,18 +27,30 @@ test_that('MAP', test_MAP())
 test_fitproj <- function() {
 
   # take 50%
-  # why is it 82 and not 200 ?
   set.seed(1)
   res_sample = MAP(mat = mat, note = note, subset_sample = TRUE,
-            subset_sample_size = 82)
+                   subset_sample_size = 82)
 
-  expect_equal(round(res_sample$cut.MAP, 3), 0.279)
+  expect_equal(round(res_sample$cut.MAP, 3), 0.292)
 
-  clusters_sample = round(res_sample$scores[, 1])
-  expect_equal(sum(clusters_sample), 99)
+  clusters_sample = res_sample$scores[, 1] > res_sample$cut.MAP
+  expect_equal(sum(clusters_sample), 101)
 
-  roc_obj = pROC::roc(clusters, clusters_sample)
-  expect_equal(roc_obj$auc, 1)
+  roc_obj = pROC::roc(clusters, as.numeric(clusters_sample))
+  expect_equal(round(roc_obj$auc, 3), 0.995)
+
+  # take 10%
+  set.seed(1)
+  res_sample = MAP(mat = mat, note = note, subset_sample = TRUE,
+                   subset_sample_size = 16)
+
+  expect_equal(round(res_sample$cut.MAP, 3), 0.292)
+
+  clusters_sample = res_sample$scores[, 1] > res_sample$cut.MAP
+  expect_equal(sum(clusters_sample), 121)
+
+  roc_obj = pROC::roc(clusters, as.numeric(clusters_sample))
+  expect_equal(round(roc_obj$auc, 3), 0.968)
 }
 test_that('fitproj', test_fitproj())
 
