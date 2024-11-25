@@ -1,6 +1,8 @@
-test_data_chuan <- function() {
-  devtools::load_all()
+test_private_data <- function() {
+
+  #devtools::load_all()
   library(magrittr)
+  library(MAP)
 
   dirpath = system.file('data', package = 'MAP')
   df_test = get(load(file.path(dirpath, 'data_to_Thomas.Rdata')))
@@ -29,6 +31,7 @@ test_data_chuan <- function() {
   set.seed(1)
   res_half = MAP(m_data, m_note, subset_sample = TRUE,
                  subset_sample_size = n_half)
+
   df_perf = df_test %$% cbind.data.frame(scores = res_half$scores[, 1],
                                          RA_GoldStandard) %>% na.omit
 
@@ -121,4 +124,4 @@ test_data_chuan <- function() {
 
   expect_equal(round(auc / 5, 3), 0.914)
 }
-#test_that('data_chuan', test_data_chuan())
+#test_that('private_data', test_private_data())

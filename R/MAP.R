@@ -4,6 +4,10 @@
 #' Main function to perform MAP algorithm to calculate predicted
 #' probabilities of positive phenotype for each patient
 #' based on NLP and ICD counts adjusted for healthcare utilization.
+#' For large number of patients (>50k) it may take very long to compute,
+#' so a subset_sample parameter is provided to perform the fit on a subset of
+#' patients and project the remaining. The subset_sample_size controls the
+#' maximum number of patients on which to perform the fit.
 #'
 #' @param mat Count data (sparse matrix). One of the columns has to be ICD
 #'            data with name being ICD.
@@ -12,10 +16,17 @@
 #'                used for now.
 #' @param full.output A logical variable indicating if full outputs are
 #'                    desired.
+#' @param subset_sample Logical, perform fit on a subset of patients and
+#'                      project remaining.
+#' @param subset_sample_size If subset_sample TRUE, number of patients on which
+#'                           to perform the fit (default 50k).
+#' @param verbose Print model information
+#'
 #' @return Returns a list with following objects:
 #'         \item{scores}{Indicates predicted probabilities.}
 #'         \item{cut.MAP}{The cutoff value that can be used to derive binary
 #'         phenotypes.}
+#'
 #' @references High-throughput Multimodal Automated Phenotyping (MAP) with
 #' Application to PheWAS. Katherine P. Liao, Jiehuan Sun,
 #' Tianrun A. Cai, Nicholas Link, Chuan Hong, Jie Huang, Jennifer Huffman,
@@ -23,6 +34,7 @@
 #' Shawn Murphy, Christopher J. O’Donnell, J. Michael Gaziano, Kelly Cho,
 #' Peter Szolovits, Isaac Kohane, Sheng Yu, and Tianxi Cai
 #' with the VA Million Veteran Program (2019) <doi:10.1101/587436>.
+#'
 #' @examples
 #' ## simulate data to test the algorithm
 #' n = 400
@@ -33,8 +45,11 @@
 #' res = MAP(mat = mat,  note=note)
 #' head(res$scores)
 #' res$cut.MAP
+#'
+#' @export
 MAP = function(mat = NULL, note = NULL, yes.con = FALSE, full.output = FALSE,
-               subset_sample = FALSE, subset_sample_size = 5000) {
+               subset_sample = FALSE, subset_sample_size = 5000,
+               verbose = TRUE) {
 
   vname = colnames(mat)
   if (length(grep("ICD", vname, fixed = TRUE)) == 0) {
@@ -181,13 +196,16 @@ MAP = function(mat = NULL, note = NULL, yes.con = FALSE, full.output = FALSE,
   if (sum(na.id) > 0) final.score[na.id, 1] = NA
 
   IDtab = IDtab[IDtab$Freq > 0, ]
-  cat("####################### \n")
-  cat("MAP only considers patients who have note count data and
-      at least one non-missing variable\n")
-  cat("####\nHere is a summary of the input data:\n")
-  cat("Total number of patients:", sum(IDtab$Freq), "\n")
-  print(IDtab)
-  cat("#### \n")
+
+  if (verbose) {
+    cat("####################### \n")
+    cat("MAP only considers patients who have note count data and
+        at least one non-missing variable\n")
+    cat("####\nHere is a summary of the input data:\n")
+    cat("Total number of patients:", sum(IDtab$Freq), "\n")
+    print(IDtab)
+    cat("#### \n")
+  }
 
   final.score[ICD == 0] = 0
 

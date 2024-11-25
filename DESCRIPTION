@@ -1,13 +1,18 @@
 Package: MAP
 Type: Package
 Title: Multimodal Automated Phenotyping
-Version: 0.1.5
+Version: 1.0.0
 Authors@R: c(
-    person("Jiehuan", "Sun", role = c("aut", "cre"), email = "jiehuan.sun@gmail.com"),
-    person("Thomas", "Charlon", role = "ctb", comment = c(ORCID = "0000-0001-7497-0470")),
+    person("Thomas", "Charlon", role = c("aut", "cre"),
+           email = "charlon@protonmail.com",
+           comment = c(ORCID = "0000-0001-7497-0470")),
+    person("Chuan", "Hong", role = "aut"),
+    person("Jiehuan", "Sun", role = "aut"),
     person("Katherine", "Liao", role = "aut"),
     person("Sheng", "Yu", role = "aut"),
-    person("Tianxi", "Cai", role = "aut")
+    person("Tianxi", "Cai", role = "aut"),
+    person("PARSE Health", role = "aut", comment = "<https://parse-health.org>"),
+    person("CELEHS", role = "aut", comment = "<https://celehs.hms.harvard.edu>")
     )
 Description: Electronic health records (EHR) linked with biorepositories are 
     a powerful platform for translational studies. A major bottleneck exists 
@@ -27,7 +32,8 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Depends: R (>= 3.4.0), flexmix (>= 2.3-14), Matrix(>= 1.2-10)
-Suggests: knitr, pROC, rmarkdown
+Imports: magrittr
+Suggests: knitr, pROC, rmarkdown, testthat
 VignetteBuilder: knitr
 NeedsCompilation: no
-RoxygenNote: 7.1.1
+RoxygenNote: 7.3.2

@@ -4,3 +4,5 @@ docs
 pkgdown
 README.Rmd
 Dockerfile
+Makefile
+docker-compose.yml

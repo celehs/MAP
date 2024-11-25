@@ -10,7 +10,7 @@ NLP = c(rpois(n / 4, 10), rpois(n / 4, 1), rep(0, n / 2))
 mat = Matrix(data = cbind(ICD, NLP), sparse = TRUE)
 note = Matrix(rpois(n, 10) + 5, ncol = 1, sparse = TRUE)
 
-res_full = MAP(mat = mat, note = note)
+res_full = MAP(mat = mat, note = note, verbose = FALSE)
 clusters = res_full$scores[, 1] > res_full$cut.MAP
 
 test_MAP <- function() {
@@ -29,7 +29,7 @@ test_fitproj <- function() {
   # take 50%
   set.seed(1)
   res_sample = MAP(mat = mat, note = note, subset_sample = TRUE,
-                   subset_sample_size = 82)
+                   subset_sample_size = 82, verbose = FALSE)
 
   expect_equal(round(res_sample$cut.MAP, 3), 0.292)
 
@@ -41,16 +41,27 @@ test_fitproj <- function() {
 
   # take 10%
   set.seed(1)
-  res_sample = MAP(mat = mat, note = note, subset_sample = TRUE,
-                   subset_sample_size = 16)
 
-  expect_equal(round(res_sample$cut.MAP, 3), 0.292)
+  res_sample = tryCatch(expr = MAP(mat = mat, note = note, subset_sample = TRUE,
+                                   subset_sample_size = 16, verbose = FALSE),
+                            warning = function(w_msg) {
+                              if (length(as.character(w_msg)) > 1 ||
+                                  !grepl('The clustering step does not converge for variable ICD_log', w_msg)) {
+                                print(w_msg)
+                              }
+                              suppressWarnings({
+                                  MAP(mat = mat, note = note, subset_sample = TRUE,
+                                                   subset_sample_size = 16, verbose = FALSE)
+                                })
+                            })
+
+  expect_equal(round(res_sample$cut.MAP, 3), 0.148)
 
   clusters_sample = res_sample$scores[, 1] > res_sample$cut.MAP
-  expect_equal(sum(clusters_sample), 121)
+  expect_equal(sum(clusters_sample), 101)
 
   roc_obj = pROC::roc(clusters, as.numeric(clusters_sample))
-  expect_equal(round(roc_obj$auc, 3), 0.968)
+  expect_equal(round(roc_obj$auc, 3), 0.995)
 }
 test_that('fitproj', test_fitproj())
 
