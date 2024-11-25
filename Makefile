@@ -8,6 +8,9 @@ all: clean devtools_check
 doc.pdf:
 	R CMD Rd2pdf -o doc.pdf .
 
+clean:
+	$(RM) doc.pdf
+
 build:
 	cd ..;\
 	R CMD build --no-manual $(PKGSRC)
