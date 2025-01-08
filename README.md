@@ -1,9 +1,9 @@
 
 # MAP: Multimodal Automated Phenotyping
 
-[![CRAN version](http://www.r-pkg.org/badges/version/MAP)](https://cran.r-project.org/package=MAP)
-[![CRAN total downloads](http://cranlogs.r-pkg.org/badges/grand-total/MAP)](https://cran.r-project.org/package=MAP)
-[![CRAN monthly downloads](http://cranlogs.r-pkg.org/badges/MAP)](https://cran.r-project.org/package=MAP)
+[![CRAN version](https://www.r-pkg.org/badges/version/MAP)](https://cran.r-project.org/package=MAP)
+[![CRAN total downloads](https://cranlogs.r-pkg.org/badges/grand-total/MAP)](https://cran.r-project.org/package=MAP)
+[![CRAN monthly downloads](https://cranlogs.r-pkg.org/badges/MAP)](https://cran.r-project.org/package=MAP)
 
 ## Installation
 

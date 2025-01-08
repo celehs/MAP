@@ -1,4 +1,7 @@
+url: https://celehs.github.io/MAP/
+ 
 template:
+  bootstrap: 5
   params:
     bootswatch: cosmo
     
@@ -8,6 +11,8 @@ navbar:
   left:
     - icon: "fa-home"
       href: index.html
+    - text: "Multimodal Automated Phenotyping"
+      href: articles/MAP.html      
     - text: "Example"
       href: articles/example.html      
     - text: "Reference"
